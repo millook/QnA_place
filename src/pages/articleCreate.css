@@ -1,0 +1,154 @@
+body{
+  background-color: #F7FAFF;
+}
+
+.articles-container { /* 전체적인 css */
+  position: relative;
+  margin-top: 115px;
+  font-family: 'Noto Sans KR', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.question-title-box{
+  display: flex;
+  width: 1160px;
+  height: 100px;
+  padding: 0 20px; /* 왼쪽과 오른쪽에 각각 30px 패딩을 추가 */
+  font-size: 28px;
+  background-color: #fff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.question-title{
+  flex: 1; /* 부모 div의 남은 공간을 차지하게 만듭니다 */
+  max-width: 100%; /* 부모 div의 너비를 넘지 않도록 합니다 */
+}
+
+
+
+
+.question { /* 세부 질문 css */
+  padding-left: 30px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding:20px 30px 20px 30px;
+  margin-bottom: 10px;
+  max-width: 1160px;
+  position: relative;
+}
+
+.question-details { /*세부질문 제목 쪽 css */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.question-details-input {  /*세부질문 제목 text field css */
+  padding-left: 4px;
+  font-size: 20px;
+  width: 80%;
+  padding: 10px 0px 10px 0px;
+  margin-right: 10px;
+}
+
+.question-type { /*세부질문 drop box css */
+  flex: 1;
+  padding: 10px;
+}
+
+.multiple-options .option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+.option-input {
+  margin-left: 10px;
+  padding-left: 30px;
+  background-color: #F8F9FA;
+  font-size: 16px;
+  padding: 5px;
+  margin-right: 16px;
+  flex: 1;
+}
+
+.remove-option-button {
+  background-color: #ccc; /* 회색 배경색 */
+  color: #fff; /* 흰색 텍스트 색상 */
+  border: none; /* 테두리 없음 */
+  border-radius: 50%; /* 원 모양 */
+  width: 24px; /* 너비 */
+  height: 24px; /* 높이 */
+  line-height: 24px; /* 텍스트 수직 가운데 정렬 */
+  text-align: center; /* 텍스트 수평 가운데 정렬 */
+  font-size: 14px; /* 폰트 크기 */
+  cursor: pointer; /* 커서 모양을 포인터로 변경하여 클릭 가능함을 나타냄 */
+}
+
+.remove-question-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding-bottom: 10px;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-question-button, .submit-question-button {
+    width : 240px;
+    height: 52px;
+    padding: 10px 20px;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-option-button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #003894;
+  color: #003894;
+}
+
+.add-question-button {
+  border: 1px solid #003894;
+  background-color: white;
+  color: #003894;
+}
+
+.submit-question-button {
+  background-color: #003894;
+  color: white;
+}
+
+textarea.descriptive-answer {
+  width: 1116px;
+  height: 48px;
+  font-size: 16px;
+  padding: 10px;
+  background-color: #F8F9FA;
+  resize: vertical;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+}

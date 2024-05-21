@@ -1,0 +1,41 @@
+.complete-container {
+  display: flex;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 560px;
+  height: 320px;
+  flex-direction: column;
+  justify-content: center; /* 자식 요소 수평 가운데 정렬 */
+  align-items: center; /* 자식요소 수직 가운데 정렬 */
+
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+.complete-title{
+  padding-bottom: 20px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+
+.complete-script{
+  color : #626262;
+  padding-bottom: 36px;
+  text-align: center;
+}
+
+
+.check-button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  width : 400px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #003894;
+  color: #fff;
+}
