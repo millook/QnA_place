@@ -86,6 +86,7 @@ const ArticleCreate = () => {
     setQuestions(updatedQuestions);
   };
 
+
   // 질문등록하기 함수
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -121,33 +122,10 @@ const ArticleCreate = () => {
       memberId: 1,
       date: new Date().toISOString(),
       title: questionTitle,
-      body: "", // 사용자가 입력한 내용으로 대체해야 함
+      body: "Article 5 Body", // 사용자가 입력한 내용으로 대체해야 함
       categoryId: 1,
       questionHeaders: {
-        values: questions.map(question => {
-          if (question.type === 'multiple') {
-            return {
-              "@type": "MultipleChoiceQuestionHeaderRequest",
-              title: question.title,
-              description: "", // 설명 필드 추가
-              choices: question.options
-            };
-          } else if (question.type === 'descriptive') {
-            return {
-              "@type": "LongQuestionHeaderRequest",
-              title: question.title,
-              description: "", // 설명 필드 추가
-              hint: "" // 힌트 필드 추가
-            };
-          } else {
-            return {
-              "@type": "ShortQuestionHeaderRequest",
-              title: question.title,
-              description: "", // 설명 필드 추가
-              hint: "" // 힌트 필드 추가
-            };
-          }
-        })
+        values: questionHeaders
       }
     };
 
@@ -177,7 +155,7 @@ const ArticleCreate = () => {
     } catch (error) {
       console.error('Error submitting questions:', error);
     }
-  };
+};
 
   //html
   return (

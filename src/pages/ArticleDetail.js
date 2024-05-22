@@ -41,7 +41,7 @@ function ArticleDetail() {
         <h1 className="question-title">{article.title}</h1>
       </div>
       <div className='questions'>
-        {article.questionHeaders && article.questionHeaders.questionHeaders.map((question, index) => (
+        {article.questionHeaders && article.questionHeaders.questionHeaders.map((question, index) => ( /*여기 수정함*/
           <div key={index} className='question-container'>
             <div className="question">
               <div className="question-details">
@@ -60,9 +60,21 @@ function ArticleDetail() {
                       <span>{choice}</span>
                     </div>
                   ))}
+                  <button
+                    type="button"
+                    onClick={() => {}}
+                    className="add-option-button"
+                    disabled
+                  >
+                    옵션 추가
+                  </button>
                 </div>
               ) : (
-                <p className="descriptive-answer">{question.hint}</p>
+                <textarea
+                  className="descriptive-answer"
+                  value={question.hint}
+                  readOnly
+                />
               )}
             </div>
           </div>
