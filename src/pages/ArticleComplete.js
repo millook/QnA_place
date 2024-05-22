@@ -1,13 +1,14 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import './articleComplete.css';
 
-function ArticleComplete({ id }) {
+function ArticleComplete() {
+  
+  const location = useLocation(); 
   const navigate = useNavigate();
 
-  // 질문 확인 페이지로 이동하는 함수
   const handleCheckQuestion = () => {
-    navigate(`/ArticleDetail/${id}`); // 이동할 페이지 경로에 id를 포함
+    navigate(`/ArticleDetail/${location.state.articleId}`);
   };
 
   return (

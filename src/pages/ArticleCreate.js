@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom'; // useHistory 가져오기
+import { useNavigate } from 'react-router-dom';
 import './articleCreate.css';
 
 const ArticleCreate = () => {
   const [questionTitle, setQuestionTitle] = useState('');
   const [questions, setQuestions] = useState([{ id: 1, type: 'multiple', title: '', options: [''] }]);
   const [nextQuestionId, setNextQuestionId] = useState(2);
+  const navigate = useNavigate(); // useNavigate 훅 사용
 
   const handleChangeQuestionTitle = (e) => {
     setQuestionTitle(e.target.value);
@@ -31,7 +32,7 @@ const ArticleCreate = () => {
     setQuestions(updatedQuestions);
   };
 
-  //상태 저장
+  // 상태 저장
   const handleChangeOption = (e, questionId, optionIndex) => {
     const updatedQuestions = questions.map(question => {
       if (question.id === questionId) {
@@ -44,7 +45,7 @@ const ArticleCreate = () => {
     setQuestions(updatedQuestions);
   };
 
-  //옵션 추가 함수
+  // 옵션 추가 함수
   const handleAddOption = (questionId) => {
     const updatedQuestions = questions.map(question => {
       if (question.id === questionId) {
@@ -55,6 +56,7 @@ const ArticleCreate = () => {
     setQuestions(updatedQuestions);
   };
 
+  // 질문 추가 함수
   const handleAddQuestion = () => {
     const newQuestion = { id: nextQuestionId, type: 'multiple', title: '', options: [''] };
     setQuestions([...questions, newQuestion]);
@@ -66,7 +68,7 @@ const ArticleCreate = () => {
     }, 0);
   };
 
-  //옵션 삭제 함수
+  // 옵션 삭제 함수
   const handleRemoveOption = (questionId, optionIndex) => {
     const updatedQuestions = questions.map(question => {
       if (question.id === questionId) {
@@ -78,16 +80,80 @@ const ArticleCreate = () => {
     setQuestions(updatedQuestions);
   };
 
-  //질문 삭제 함수
+  // 질문 삭제 함수
   const handleRemoveQuestion = (questionId) => {
     const updatedQuestions = questions.filter(question => question.id !== questionId);
     setQuestions(updatedQuestions);
   };
 
-  //질문등록하기 함수
+  // 질문등록하기 함수
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // questionHeaders 생성
+    const questionHeaders = questions.map((question, index) => {
+      if (question.type === 'multiple') {
+        return {
+          "@type": "MultipleChoiceQuestionHeaderRequest",
+          title: question.title,
+          description: "",
+          choices: question.options
+        };
+      } else if (question.type === 'descriptive') {
+        return {
+          "@type": "LongQuestionHeaderRequest",
+          title: question.title,
+          description: "",
+          hint: ""
+        };
+      } else {
+        return {
+          "@type": "ShortQuestionHeaderRequest",
+          title: question.title,
+          description: "",
+          hint: ""
+        };
+      }
+    });
+
+    // requestBody 생성
+    const requestBody = {
+      memberId: 1,
+      date: new Date().toISOString(),
+      title: questionTitle,
+      body: "", // 사용자가 입력한 내용으로 대체해야 함
+      categoryId: 1,
+      questionHeaders: {
+        values: questions.map(question => {
+          if (question.type === 'multiple') {
+            return {
+              "@type": "MultipleChoiceQuestionHeaderRequest",
+              title: question.title,
+              description: "", // 설명 필드 추가
+              choices: question.options
+            };
+          } else if (question.type === 'descriptive') {
+            return {
+              "@type": "LongQuestionHeaderRequest",
+              title: question.title,
+              description: "", // 설명 필드 추가
+              hint: "" // 힌트 필드 추가
+            };
+          } else {
+            return {
+              "@type": "ShortQuestionHeaderRequest",
+              title: question.title,
+              description: "", // 설명 필드 추가
+              hint: "" // 힌트 필드 추가
+            };
+          }
+        })
+      }
+    };
+
+    console.log('Request Body:', JSON.stringify(requestBody));
+
+    // post api 호출 (질문 등록)
     try {
       const response = await fetch("/articles", {
         method: 'POST',
@@ -95,54 +161,25 @@ const ArticleCreate = () => {
           'Content-Type': 'application/json',
           'Authorization': '1'
         },
-        body: JSON.stringify({
-          memberId: 1,
-          date: new Date().toISOString(),
-          title: "Article 5",
-          body: "Article 5 Body",
-          categoryId: 1,
-          questionHeaders: {
-            values: [
-              {
-                "@type": "LongQuestionHeaderRequest",
-                title: "Article 5 Question Header 0",
-                description: "Article 5 Question Header 0 Description",
-                hint: "Article 5 Question Header 0 Hint"
-              },
-              {
-                "@type": "ShortQuestionHeaderRequest",
-                title: "Article 5 Question Header 1",
-                description: "Article 5 Question Header 1 Description",
-                hint: "Article 5 Question Header 1 Description"
-              },
-              {
-                "@type": "MultipleChoiceQuestionHeaderRequest",
-                title: "Article 5 Question Header 2",
-                description: "Article 5 Question Header 2 Description",
-                choices: [
-                  "choice 1",
-                  "choice 2",
-                  "choice 3"
-                ]
-              }
-            ]
-          }
-        }),
+        body: JSON.stringify(requestBody),
       });
-  
+
       if (response.ok) {
-        const result = await response.text();
-        console.log(result); // 요청이 성공한 경우에만 출력
+        const result = await response.json();
+        console.log(result);
+        const newQuestionId = result.id; // Assuming the response contains the new question ID
+        navigate(`/ArticleComplete`, {state : { articleId: newQuestionId }});
         // 완료 페이지로 이동
-        window.location.href = '/ArticleComplete'; // 완료 페이지의 URL로 이동
       } else {
-        console.error('Failed to submit questions');
+        const errorText = await response.text();
+        console.error('Failed to submit questions:', errorText);
       }
     } catch (error) {
       console.error('Error submitting questions:', error);
     }
   };
 
+  //html
   return (
     <div className="articles-container">
       <form onSubmit={handleSubmit}>
