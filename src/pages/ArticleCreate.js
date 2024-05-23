@@ -90,48 +90,46 @@ const ArticleCreate = () => {
   // 질문등록하기 함수
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // questionHeaders 생성
+  
+    // Constructing question headers
     const questionHeaders = questions.map((question, index) => {
       if (question.type === 'multiple') {
         return {
           "@type": "MultipleChoiceQuestionHeaderRequest",
           title: question.title,
-          description: "",
+          description: "", // You can add a description if needed
           choices: question.options
         };
       } else if (question.type === 'descriptive') {
         return {
           "@type": "LongQuestionHeaderRequest",
           title: question.title,
-          description: "",
-          hint: ""
+          description: "", // You can add a description if needed
+          hint: "" // You can add a hint if needed
         };
       } else {
         return {
           "@type": "ShortQuestionHeaderRequest",
           title: question.title,
-          description: "",
-          hint: ""
+          description: "", // You can add a description if needed
+          hint: "" // You can add a hint if needed
         };
       }
     });
-
-    // requestBody 생성
+  
+    // Constructing the request body
     const requestBody = {
       memberId: 1,
       date: new Date().toISOString(),
       title: questionTitle,
-      body: "Article 5 Body", // 사용자가 입력한 내용으로 대체해야 함
+      body: "Article 5 Body", // Replace with actual body content
       categoryId: 1,
       questionHeaders: {
         values: questionHeaders
       }
     };
-
-    console.log('Request Body:', JSON.stringify(requestBody));
-
-    // post api 호출 (질문 등록)
+  
+    // Sending the POST request
     try {
       const response = await fetch("/articles", {
         method: 'POST',
@@ -141,13 +139,13 @@ const ArticleCreate = () => {
         },
         body: JSON.stringify(requestBody),
       });
-
+  
       if (response.ok) {
         const result = await response.json();
         console.log(result);
         const newQuestionId = result.id; // Assuming the response contains the new question ID
-        navigate(`/ArticleComplete`, {state : { articleId: newQuestionId }});
-        // 완료 페이지로 이동
+        navigate(`/ArticleComplete`, { state: { articleId: newQuestionId } });
+        // Navigate to the completion page
       } else {
         const errorText = await response.text();
         console.error('Failed to submit questions:', errorText);
@@ -155,7 +153,9 @@ const ArticleCreate = () => {
     } catch (error) {
       console.error('Error submitting questions:', error);
     }
-};
+  };
+
+    
 
   //html
   return (
