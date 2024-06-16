@@ -34,7 +34,7 @@
   cursor: pointer;
   padding: 3px 6px; 
   font-size: 16px;
-  background-color: #007BFF;
+  background-color: #003894;
   color: white;
   border-radius: 4px;
   width: 80px;
@@ -56,11 +56,13 @@
 }
 
 .article {
+  font-size: x-large;
   border-bottom: 1px solid #ccc;
   padding: 10px 0;
 }
 
 .article h2 {
+  font-size: 32px;
   margin: 0;
   font-size: 1.2em;
 }

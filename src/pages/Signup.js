@@ -88,7 +88,7 @@ const SignUpForm = () => {
         try {
             const response = await fetch('/member/join', requestOptions);
             if (response.ok) {
-                navigate('/signup-complete');
+                navigate('/signupComplete');
             } else {
                 const errorData = await response.json();
                 console.error('Sign up failed:', errorData);

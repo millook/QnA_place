@@ -30,6 +30,7 @@ const Home = () => {
         const filteredData = [];
         for (let article of result.articles) {
           filteredData.push({
+            id: article.id, // id를 추가합니다.
             title: article.title,
             category: article.category,
           });
@@ -72,7 +73,9 @@ const Home = () => {
       <div className="articles-container">
         {currentArticles.map((article, index) => (
           <div key={index} className="article">
-            <h2>{article.title}</h2>
+            <Link to={`/articleDetail/${article.id}`}>
+              <h2>{article.title}</h2>
+            </Link>
             <div>카테고리 : {article.category}</div>
           </div>
         ))}

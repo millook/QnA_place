@@ -48,7 +48,7 @@
   height: 52px;
   margin: 20px auto; /* 좌우 패딩 */
   align-items: center;
-  background-color: #007bff;
+  background-color: #003894;
   color: white;
   border: none;
   border-radius: 5px;
@@ -69,7 +69,7 @@
 }
 
 .signup-info a {
-  color: #007bff;
+  color: #003894;
   text-decoration: none;
 }
 

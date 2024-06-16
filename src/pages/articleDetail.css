@@ -40,7 +40,7 @@ body {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
-  padding: 20px 30px 20px 30px;
+  padding: 20px 30px;
   margin-bottom: 10px;
   max-width: 1160px;
   position: relative;
@@ -57,7 +57,7 @@ body {
   padding-left: 4px;
   font-size: 20px;
   width: 80%;
-  padding: 10px 0px 10px 0px;
+  padding: 10px 0;
   margin-right: 10px;
 }
 
@@ -69,4 +69,96 @@ ul {
 ul li {
   margin-bottom: 10px;
   font-size: 18px;
+}
+.answer-create-button{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 240px;
+  height: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  color : white;
+  background-color: #003894;
+  border-radius: 4px; /* 모서리 둥글게 */
+  text-align: center;
+  text-decoration: none; /* 밑줄 제거 */
+  cursor: pointer;
+}
+
+.answer-create-button:hover {
+  background-color: #0056b3;
+}
+
+.answers-container {
+  padding-top: 20px;
+  width: 1160px;
+  margin-top: 40px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px 30px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.answers-container h2 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.answer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+
+}
+
+.answer span{
+  font-size : 20px;
+}
+
+
+.answer button {
+  padding: 10px 15px;
+  background-color: transparent;
+  border: 1px solid #003894;
+  color: #003894;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.answer button:hover {
+  background-color: #003894;
+  color: white;
+}
+
+.article_pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #003894;
+  color: white;
+  border: 1px solid #003894;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
