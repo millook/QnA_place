@@ -65,11 +65,10 @@ const Home = () => {
       </div>
       <h1>Q&A Place</h1>
       <div className="search-container">
-        <div className="search-bar">
           <input type="text" placeholder="검색어를 입력하세요." className="search-input" />
           <button type="submit" className="search-button">검색</button>
-        </div>
       </div>
+      <div className='title_header'>답변을 기다리는 항목</div>
       <div className="articles-container">
         {currentArticles.map((article, index) => (
           <div key={index} className="article">
