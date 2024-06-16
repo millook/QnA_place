@@ -1,85 +1,144 @@
-.login-container {
+/* signup.css */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.signup-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  justify-content: flex-start;
+  min-height: 120vh;
   background-color: #f5f5f5;
+  padding-top: 100px; /* 헤더와의 간격을 위해 패딩 추가 */
 }
 
-.login-form {
+.signup-title {
+  text-align: center;
+}
+
+.signup-form {
   background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 560px;
 }
 
-.login-form h2 {
-  margin-bottom: 20px;
+.signup-form h2 {
+  padding-top: 20px;
+  margin-bottom: 10px;
+  font-size: 36px;
+  font-weight: bold;
 }
 
-.form-group {
-  margin-bottom: 15px;
+.signup-form p {
+  margin-bottom: 30px;
+  font-size: 16px;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  text-align: left; 
+.account_info {
+  font-weight: bold;
+  font-size: 20px;
+  position: relative;
+  padding-bottom: 10px;
 }
 
-.form-group input {
+.account_info::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
   width: 100%;
-  padding: 8px;
+  height: 2px;
+  background-color: black;
+  margin-bottom: 10px;
+}
+
+.signup-form .form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.signup-form .form-group-inline {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* 왼쪽 정렬 */
+}
+
+.signup-form label {
+  margin-top: 20px;
+  width: 100px; 
+}
+
+.signup-form .form-group-inline input {
+  flex-grow: 1;
+  width:380px;
+  height: 52px;
+  margin-right: 10px;
   box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: left;
 }
 
-button {
-  width: 100%;
-  padding: 10px;
+.dup-button {
+  width:87px;
+  height: 52px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 14px;
+
 }
 
-button:hover {
+.signup-form .dup-button:hover {
   background-color: #0056b3;
 }
 
-.forgot-links {
-  margin-top: 10px;
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  padding-right: 40px;
+  padding-bottom: 10px;
+}
+
+.checkbox-group input {
+  margin-right: 10px;
+}
+
+.signup-form .submit-button {
+  width: 480px;
+  padding: 15px;
+  margin: 20px auto;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
   text-align: center;
 }
 
-.forgot-links a {
+.signup-form .submit-button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.info-message {
+  font-size: 14px;
   color: #007bff;
-  text-decoration: none;
+  text-align: left;
 }
-
-.forgot-links a:hover {
-  text-decoration: underline;
-}
-
-.signup-info {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.signup-info p {
-  margin-bottom: 10px;
-}
-
-.signup-info a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.signup-info a:hover {
-  text-decoration: underline;
-}
-
-
-

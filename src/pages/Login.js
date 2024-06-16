@@ -28,8 +28,6 @@ const LoginForm = () => {
             if (response.ok) {
                 login();
                 navigate('/');
-                //console.log('Username:', username);
-                //console.log('Password:', password);  
             } else {
                 const errorData = await response.json();
                 console.error('Login failed:', errorData);
@@ -41,38 +39,33 @@ const LoginForm = () => {
         }
     };
 
-    
-
     return (
         <div className="login-container">
             <form className="login-form" onSubmit={handleSubmit}>
-                <h2>로그인</h2>
+                <h2> 로그인 </h2>   
                 <div className="form-group">
-                    <label htmlFor="username">아이디</label>
+                    <div className='id_text'>아이디</div>
                     <input 
                         type="text" 
                         id="username" 
                         value={username} 
                         onChange={(e) => setUsername(e.target.value)} 
-                        placeholder="아이디를 입력하세요"
+                        placeholder="아이디를 입력하세요." 
                         required 
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password">비밀번호</label>
+                    <div className='pw_text'>비밀번호</div>
                     <input 
                         type="password" 
                         id="password" 
                         value={password} 
                         onChange={(e) => setPassword(e.target.value)} 
-                        placeholder="비밀번호를 입력하세요"
+                        placeholder="비밀번호를 입력하세요." 
                         required 
                     />
                 </div>
-                <button type="submit">로그인</button>
-                <div className="forgot-links">
-                    <Link to="/find-username">아이디 찾기</Link> | <Link to="/find-password">비밀번호 찾기</Link>
-                </div>
+                <button type="submit" className='login_button'>로그인</button>
                 <div className="signup-info">
                     <p>Q&A Place가 처음이신가요? <Link to="/signup">회원가입</Link></p>
                 </div>
@@ -82,4 +75,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-
