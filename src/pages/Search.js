@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import './home.css'; 
 
-const Home = () => {
+const Search = () => {
   const { isLoggedIn, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [articles, setArticles] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,34 +17,48 @@ const Home = () => {
     navigate('/'); 
   };
 
-  useEffect(() => {
-    const fetchArticles = async () => {
-      var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-      };
-
-      try {
-        const response = await fetch("/articles?count=10000", requestOptions);
-        const result = await response.json();
-        console.log(result); 
-
-        const filteredData = [];
-        for (let article of result.articles) {
-          filteredData.push({
-            id: article.id, // id를 추가합니다.
-            title: article.title,
-            category: article.category,
-          });
-        }
-        setArticles(filteredData);
-      } catch (error) {
-        console.log('Error fetching articles:', error);
-      }
+  const fetchArticles = async (query = '') => {
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
     };
 
-    fetchArticles();
-  }, []);
+    try {
+      const url = `/articles?count=10000`; // 변경된 URL
+      const response = await fetch(url, requestOptions);
+      const result = await response.json();
+      console.log(result);
+
+      if (result.articles && result.articles.length > 0) {
+        const filteredData = result.articles
+          .filter(article => article.title.toLowerCase().includes(query.toLowerCase())) // 대소문자 구분 없이 검색
+          .map(article => ({
+            id: article.id, 
+            title: article.title,
+            category: article.category,
+          }));
+        if (filteredData.length > 0) {
+          setArticles(filteredData);
+        } else {
+          setArticles([]);
+          alert('검색 결과가 없습니다.');
+        }
+      } else {
+        setArticles([]);
+        alert('검색 결과가 없습니다.');
+      }
+    } catch (error) {
+      console.log('Error fetching articles:', error);
+    }
+  };
+
+  useEffect(() => {
+    const query = new URLSearchParams(location.search).get('query');
+    if (query) {
+      setSearchQuery(query);
+      fetchArticles(query);
+    }
+  }, [location.search]);
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -65,7 +80,7 @@ const Home = () => {
     <div className="home-container">
       <h1>Q&A Place</h1>
       <div className="search-container">
-       <form className="search-bar" onSubmit={handleSearch}>
+        <form className="search-bar" onSubmit={handleSearch}>
           <input 
             type="text" 
             placeholder="검색어를 입력하세요." 
@@ -74,7 +89,7 @@ const Home = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <button type="submit" className="search-button">검색</button>
-       </form>
+        </form>
       </div>
       <div className='title_header'>답변을 기다리는 항목</div>
       <div className="articles-container">
@@ -114,4 +129,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Search;

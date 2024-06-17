@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useAuth } from '../AuthContext'; // useAuth를 사용합니다.
-import './articleDetail.css'; // 스타일링을 위해 CSS를 임포트합니다.
+import { useAuth } from '../AuthContext';
+import './articleDetail.css';
 
 function ArticleDetail() {
   const { id } = useParams();
-  const { isLoggedIn, logout } = useAuth(); // 로그인 상태와 로그아웃 함수를 가져옵니다.
+  const { isLoggedIn, username, userId, logout } = useAuth();
   const navigate = useNavigate();
   const [article, setArticle] = useState(null);
   const [answers, setAnswers] = useState([]);
@@ -22,7 +22,7 @@ function ArticleDetail() {
         if (response.status !== 200) {
           throw new Error('네트워크 응답이 올바르지 않습니다.');
         }
-        console.log('데이터:', response.data); // 응답 데이터를 콘솔에 출력합니다.
+        console.log('데이터:', response.data);
         setArticle(response.data);
         setAnswers(response.data.answers.answers);
       } catch (error) {
@@ -41,24 +41,19 @@ function ArticleDetail() {
     return <div>로딩 중...</div>;
   }
 
-  
-  
   const handleAnswerCreate = () => {
     if (isLoggedIn){
       navigate(`/answerCreate/${id}`);
-    }
-    else{
+    } else {
       alert('로그인이 필요합니다.');
       navigate('/login');
     }
   };
 
-  // 현재 페이지에 해당하는 답변들 계산
   const indexOfLastAnswer = currentPage * answersPerPage;
   const indexOfFirstAnswer = indexOfLastAnswer - answersPerPage;
   const currentAnswers = answers.slice(indexOfFirstAnswer, indexOfLastAnswer);
 
-  // 페이지 번호 계산
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(answers.length / answersPerPage); i++) {
     pageNumbers.push(i);

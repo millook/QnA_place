@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext'; //추가
 import './answerCreate.css';
 
 function AnswerCreate() {
+  const { userId } = useAuth(); //추가
   const { id } = useParams();
   const navigate = useNavigate();
   const [article, setArticle] = useState(null);
@@ -42,12 +44,12 @@ function AnswerCreate() {
     }));
   };
 
-  //답변등록함수
+  // 답변 등록 함수
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formattedAnswers = Object.values(answer);
     const newErrors = {};
-  
+
     let hasError = false;
     article.questionHeaders.questionHeaders.forEach((_, index) => {
       if (formattedAnswers[index].trim() === '') {
@@ -55,12 +57,13 @@ function AnswerCreate() {
         hasError = true;
       }
     });
-  
+
     if (hasError) {
       setErrors(newErrors);
       return;
     }
-  
+
+
     const questionBodies = article.questionHeaders.questionHeaders.map((question, index) => {
       if (question.type === 'MultipleChoiceQuestionHeader') {
         const choiceIndex = question.content.split(',').indexOf(answer[index].trim());
@@ -83,11 +86,14 @@ function AnswerCreate() {
         };
       }
     });
-  
-    const requestBody = { questionBodies };
-  
+
+    const requestBody = {
+      author: userId, // 사용자 ID 추가
+      questionBodies: questionBodies
+    };
+
     console.log('Request Body:', requestBody); // 요청 데이터 콘솔에 출력
-  
+
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -96,7 +102,7 @@ function AnswerCreate() {
       },
       body: JSON.stringify(requestBody),
     };
-  
+
     try {
       const response = await fetch(`/articles/${id}/answers`, requestOptions);
       if (response.ok) {
@@ -112,7 +118,6 @@ function AnswerCreate() {
       alert('Error registering answer: ' + error.message);
     }
   };
-  
 
   if (!article) {
     return <div>로딩 중...</div>;
@@ -159,7 +164,7 @@ function AnswerCreate() {
             </div>
           </div>
         ))}
-          <button type="submit" className="submit-button">답변 등록하기</button>
+        <button type="submit" className="submit-button">답변 등록하기</button>
       </form>
     </div>
   );

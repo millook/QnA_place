@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../AuthContext'
+import { useAuth } from '../AuthContext';
 import './login.css';
 
 const LoginForm = () => {
@@ -25,12 +25,12 @@ const LoginForm = () => {
 
         try {
             const response = await fetch('/member/login', requestOptions);
+            const data = await response.json();
             if (response.ok) {
-                login();
+                login(data.id, username); // 로그인 시 username과 userId를 저장
                 navigate('/');
             } else {
-                const errorData = await response.json();
-                console.error('Login failed:', errorData);
+                console.error('Login failed:', data);
                 alert('아이디 및 비밀번호가 잘못되었습니다. 다시 시도해주세요.');
             }
         } catch (error) {

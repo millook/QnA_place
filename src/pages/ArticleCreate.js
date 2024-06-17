@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext'; //추가
 import './articleCreate.css';
 
 const ArticleCreate = () => {
+  const { userId } = useAuth(); //추가
   const [questionTitle, setQuestionTitle] = useState('');
   const [questions, setQuestions] = useState([{ id: 1, type: 'multiple', title: '', options: [''] }]);
   const [nextQuestionId, setNextQuestionId] = useState(2);
@@ -120,7 +122,7 @@ const ArticleCreate = () => {
   
     // Constructing the request body
     const requestBody = {
-      memberId: 1,
+      memberId: userId, //변경
       date: new Date().toISOString(),
       title: questionTitle,
       body: "Article 5 Body", // Replace with actual body content

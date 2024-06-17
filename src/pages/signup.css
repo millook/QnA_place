@@ -13,6 +13,7 @@ body, html {
   justify-content: flex-start;
   min-height: 120vh;
   background-color: #f5f5f5;
+  margin-top : 60px;
   padding-top: 100px; /* 헤더와의 간격을 위해 패딩 추가 */
 }
 
@@ -22,6 +23,7 @@ body, html {
 
 .signup-form {
   background: white;
+  margin-top: 100px;
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);

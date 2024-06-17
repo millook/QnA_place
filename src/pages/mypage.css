@@ -1,0 +1,67 @@
+.mypage-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.mypage-sidebar {
+    width: 200px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-right: 1px solid #ddd;
+}
+
+.mypage-sidebar h2 {
+    margin-top: 100px;
+    font-size: 1.5em;
+}
+
+.mypage-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.mypage-sidebar ul li {
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.mypage-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.mypage-content h2 {
+    font-size: 1.5em;
+    margin-top: 100px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.message {
+    margin-top: 20px;
+    font-size: 1em;
+    color: black;
+}
