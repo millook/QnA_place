@@ -1,19 +1,30 @@
-.mypage-container {
+.mypage-title {
+    margin-top: 200px;
     display: flex;
-    min-height: 100vh;
+    font-size: 36px;
+    font-weight: bold;
+    padding-left: 320px;
 }
+
+.mypage-container {
+    margin-left: 320px;
+    display: flex;
+}
+
 
 .mypage-sidebar {
     width: 200px;
-    padding: 20px;
-    background-color: #f9f9f9;
+    height: 60px;
+    background-color: #ffffff;
     border-right: 1px solid #ddd;
+    margin-top: 50px; /* 마진 추가 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding : 15px 0px 0px 10px;
+    font-size : 20px;
+    font-weight : bold;
 }
 
-.mypage-sidebar h2 {
-    margin-top: 100px;
-    font-size: 1.5em;
-}
 
 .mypage-sidebar ul {
     list-style-type: none;
@@ -26,13 +37,19 @@
 }
 
 .mypage-content {
-    flex-grow: 1;
-    padding: 20px;
+    width:1300px;
+    padding: 40px; /* 패딩 추가 */
+    background-color: #ffffff;
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    margin: 50px; /* 마진 추가 */
 }
 
 .mypage-content h2 {
+    font-weight: bold;
     font-size: 1.5em;
-    margin-top: 100px;
+    margin-top: 0;
+    margin-bottom: 40px; /* 여백 추가 */
 }
 
 .form-group {
@@ -46,18 +63,26 @@
 }
 
 .form-group input {
-    width: 100%;
-    padding: 8px;
+    width: 480px;
+    padding: 10px; /* 패딩 조정 */
     box-sizing: border-box;
+    border: 1px solid #ddd; /* 테두리 추가 */
+    border-radius: 4px; /* 모서리 둥글게 */
 }
 
 .submit-button {
+    width : 100px;
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s; /* 배경색 전환 효과 추가 */
+}
+
+.submit-button:hover {
+    background-color: #0056b3; /* 호버 시 배경색 */
 }
 
 .message {
@@ -65,3 +90,4 @@
     font-size: 1em;
     color: black;
 }
+

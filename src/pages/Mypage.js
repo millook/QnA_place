@@ -54,43 +54,43 @@ const MyPage = () => {
     };
 
     return (
-        <div className="mypage-container">
-            <div className="mypage-sidebar">
-                <h2>마이페이지</h2>
-                <ul>
-                    <li>계정정보 수정</li>
-                </ul>
+        <>
+            <div className='mypage-title'>마이페이지</div>
+            <div className="mypage-container">
+                <div className="mypage-sidebar">
+                    <h2>계정정보</h2>
+                </div>
+                <div className="mypage-content">
+                    <h2>계정정보 수정</h2>
+                    <form onSubmit={handleFormSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="username">아이디</label>
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                value={username}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="email">이메일</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={email}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+                        <button type="submit" className="submit-button">수정</button>
+                        {message && <p className="message">{message}</p>}
+                    </form>
+                </div>
             </div>
-            <div className="mypage-content">
-                <h2>계정정보 수정</h2>
-                <form onSubmit={handleFormSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="username">아이디</label>
-                        <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            value={username}
-                            onChange={handleInputChange}
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="email">이메일</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={email}
-                            onChange={handleInputChange}
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="submit-button">수정</button>
-                    {message && <p className="message">{message}</p>}
-                </form>
-            </div>
-        </div>
+        </>
     );
 };
 

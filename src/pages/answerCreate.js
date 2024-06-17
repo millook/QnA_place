@@ -4,7 +4,7 @@ import { useAuth } from '../AuthContext'; //추가
 import './answerCreate.css';
 
 function AnswerCreate() {
-  const { userId } = useAuth(); //추가
+  const { userId, username } = useAuth(); //추가
   const { id } = useParams();
   const navigate = useNavigate();
   const [article, setArticle] = useState(null);
@@ -88,7 +88,7 @@ function AnswerCreate() {
     });
 
     const requestBody = {
-      author: userId, // 사용자 ID 추가
+      author: username, // 사용자 ID 추가
       questionBodies: questionBodies
     };
 
@@ -98,7 +98,7 @@ function AnswerCreate() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': '1'
+        'Authorization': userId,
       },
       body: JSON.stringify(requestBody),
     };
