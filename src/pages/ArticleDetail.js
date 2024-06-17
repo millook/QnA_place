@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext'; // useAuth를 사용합니다.
 import './articleDetail.css'; // 스타일링을 위해 CSS를 임포트합니다.
 
 function ArticleDetail() {
   const { id } = useParams();
+  const { isLoggedIn, logout } = useAuth(); // 로그인 상태와 로그아웃 함수를 가져옵니다.
   const navigate = useNavigate();
   const [article, setArticle] = useState(null);
   const [answers, setAnswers] = useState([]);
@@ -39,8 +41,16 @@ function ArticleDetail() {
     return <div>로딩 중...</div>;
   }
 
+  
+  
   const handleAnswerCreate = () => {
-    navigate(`/answerCreate/${id}`);
+    if (isLoggedIn){
+      navigate(`/answerCreate/${id}`);
+    }
+    else{
+      alert('로그인이 필요합니다.');
+      navigate('/login');
+    }
   };
 
   // 현재 페이지에 해당하는 답변들 계산

@@ -1,46 +1,113 @@
-.answer-create-container {
+/* answerCreate.css */
+
+.answer-container {
+    position: relative;
+    margin-top: 115px;
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  
+  .question-title-box {
+    display: flex;
     justify-content: center;
-    height: 100vh;
-    background-color: #f7faff;
-  }
-  
-  .answer-create-container h2 {
-    margin-bottom: 20px;
+    align-items: center;
+    width: 1160px;
+    height: 100px;
+    padding: 0 20px;
     font-size: 28px;
+    background-color: #fff;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
   }
   
-  .answer-create-container form {
+  .question-title {
+    flex: 1;
+    max-width: 100%;
+  }
+  
+  .questions {
+    width: 1160px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 80%;
-    max-width: 600px;
   }
   
-  .answer-create-container textarea {
+  .question {
+    padding-left: 30px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px 30px 20px 30px;
+    margin-bottom: 10px;
+    max-width: 1160px;
+    position: relative;
+  }
+  
+  .question-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .question-details-input {
+    padding-left: 4px;
+    font-size: 20px;
+    width: 80%;
+    padding: 10px 0px 10px 0px;
+    margin-right: 10px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  .submit-button {
+    padding: 10px 20px;
+    width: 240px;
+    height: 50px;
+    border-radius: 4px;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    background-color: #003894;
+    color: #fff;
+    border: none;
+    margin-top: 20px;
+    margin: 20px auto;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .option {
+    display: flex;
+    align-items: center;
+  }
+  
+  .option input {
+    margin-right: 10px;
+  }
+  
+  .descriptive-answer {
     width: 100%;
-    height: 200px;
+    height: 100px;
     padding: 10px;
-    margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 16px;
+    resize: none;
   }
   
-  .answer-create-container button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .answer-create-container button:hover {
-    background-color: #0056b3;
+  .error-message {
+    color: red;
+    margin-top: 5px;
   }
   

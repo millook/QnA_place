@@ -138,32 +138,9 @@ const SignUpForm = () => {
                         placeholder="이메일을 입력하세요"
                         required 
                     />
-                    <button type="button" className="dup-button" onClick={() => checkAvailability('email')}>중복확인</button>
-                </div>
-                <div>
-                    {emailAvailable === true && <div className="info-message">사용이 가능한 이메일입니다.</div>}
-                    {emailAvailable === false && <div className="error-message">이메일이 이미 사용 중입니다.</div>}
                 </div>
                 </div>
-                <label htmlFor="nickname">*닉네임</label>
-                
-                <div className='form-group'>
-                <div className="form-group-inline">
-                    <input 
-                        type="text" 
-                        id="nickname" 
-                        value={nickname} 
-                        onChange={handleNicknameChange} 
-                        placeholder="닉네임을 입력하세요"
-                        required 
-                    />
-                    <button type="button" className="dup-button" onClick={() => checkAvailability('nickname')}>중복확인</button>
-                </div>
-                <div>
-                    {nicknameAvailable === true && <div className="info-message">사용이 가능한 닉네임입니다.</div>}
-                    {nicknameAvailable === false && <div className="error-message">닉네임이 이미 사용 중입니다.</div>}
-                </div>
-                </div>
+            
 
                 <div className='account_info'>비밀번호 설정</div>
                 <div className="form-group">
